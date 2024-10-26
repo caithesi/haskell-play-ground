@@ -66,12 +66,11 @@ bindOptional f (Full b) = f b
 --
 -- >>> Empty <+> Empty
 -- Empty
-(<+>) ::
-  Optional a ->
-  Optional a ->
-  Optional a
-(<+>) =
-  error "todo: Course.Optional#(<+>)"
+(<+>) :: Optional a -> Optional a -> Optional a
+(<+>) Empty Empty = Empty
+(<+>) Empty a = a
+(<+>) a _ = a
+
 
 -- | Replaces the Full and Empty constructors in an optional.
 --
