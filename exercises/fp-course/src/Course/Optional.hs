@@ -48,12 +48,9 @@ mapOptional f (Full a) = Full . f $ a
 --
 -- >>> bindOptional (\n -> if even n then Full (n - 1) else Full (n + 1)) (Full 9)
 -- Full 10
-bindOptional ::
-  (a -> Optional b) ->
-  Optional a ->
-  Optional b
-bindOptional =
-  error "todo: Course.Optional#bindOptional"
+bindOptional :: (a -> Optional b) -> Optional a ->  Optional b
+bindOptional _ Empty = Empty
+bindOptional f (Full b) = f b 
 
 -- | Try the first optional for a value. If it has a value, use it; otherwise,
 -- use the second value.
