@@ -34,12 +34,9 @@ fullOr _ (Full b) = b
 --
 -- >>> mapOptional (+1) (Full 8)
 -- Full 9
-mapOptional ::
-  (a -> b) ->
-  Optional a ->
-  Optional b
-mapOptional =
-  error "todo: Course.Optional#mapOptional"
+mapOptional :: (a -> b) -> Optional a -> Optional b
+mapOptional _ Empty = Empty
+mapOptional f (Full a) = Full . f $ a
 
 -- | Bind the given function on the possible value.
 --
