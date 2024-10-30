@@ -135,12 +135,10 @@ map f = foldRight (\next acc -> (f next) :. acc) Nil
 -- prop> \x -> filter (const True) x == x
 --
 -- prop> \x -> filter (const False) x == Nil
-filter ::
-  (a -> Bool)
-  -> List a
-  -> List a
-filter =
-  error "todo: Course.List#filter"
+filter :: (a -> Bool) -> List a -> List a
+filter _ Nil = Nil
+filter f (x :. xs) = if f x then x :. (filter f xs) else filter f xs
+ 
 
 -- | Append two lists to a new list.
 --
