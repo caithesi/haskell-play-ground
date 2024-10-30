@@ -120,12 +120,10 @@ length = foldLeft (\acc _ -> acc + 1) 0
 -- prop> \x -> headOr x (map (+1) infinity) == 1
 --
 -- prop> \x -> map id x == x
-map ::
-  (a -> b)
-  -> List a
-  -> List b
-map =
-  error "todo: Course.List#map"
+map :: (a -> b) -> List a -> List b
+-- map _ Nil = Nil
+-- map f (x:.xs) =  (f x) :. (map f xs)
+map f = foldRight (\next acc -> (f next) :. acc) Nil
 
 -- | Return elements satisfying the given predicate.
 --
