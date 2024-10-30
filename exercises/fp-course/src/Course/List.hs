@@ -108,11 +108,9 @@ sum = foldRight (+) 0
 -- 3
 --
 -- prop> \x -> sum (map (const 1) x) == length x
-length ::
-  List a
-  -> Int
-length =
-  error "todo: Course.List#length"
+length :: List a -> Int
+length = foldLeft (\acc _ -> acc + 1) 0
+  
 
 -- | Map the given function on each element of the list.
 --
