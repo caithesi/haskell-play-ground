@@ -86,11 +86,9 @@ headOr _ (a :. _) = a
 --
 -- >>> product (1 :. 2 :. 3 :. 4 :. Nil)
 -- 24
-product ::
-  List Int
-  -> Int
-product =
-  error "todo: Course.List#product"
+product :: List Int -> Int
+product Nil = 1
+product (x :. xs) = x * (product xs)
 
 -- | Sum the elements of the list.
 --
