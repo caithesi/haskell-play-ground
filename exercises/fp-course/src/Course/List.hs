@@ -168,11 +168,8 @@ infixr 5 ++
 -- prop> \x -> headOr x (flatten (y :. infinity :. Nil)) == headOr 0 y
 --
 -- prop> \x -> sum (map length x) == length (flatten x)
-flatten ::
-  List (List a)
-  -> List a
-flatten =
-  error "todo: Course.List#flatten"
+flatten :: List (List a) -> List a
+flatten = foldRight (++) Nil
 
 -- | Map a function then flatten to a list.
 --
