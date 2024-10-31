@@ -110,7 +110,7 @@ sum = foldRight (+) 0
 -- prop> \x -> sum (map (const 1) x) == length x
 length :: List a -> Int
 length = foldLeft (\acc _ -> acc + 1) 0
-  
+
 
 -- | Map the given function on each element of the list.
 --
@@ -138,7 +138,7 @@ map f = foldRight (\next acc -> (f next) :. acc) Nil
 filter :: (a -> Bool) -> List a -> List a
 filter _ Nil = Nil
 filter f (x :. xs) = if f x then x :. (filter f xs) else filter f xs
- 
+
 
 -- | Append two lists to a new list.
 --
@@ -181,12 +181,8 @@ flatten = foldRight (++) Nil
 -- prop> \x -> headOr x (flatMap id (y :. infinity :. Nil)) == headOr 0 y
 --
 -- prop> \x -> flatMap id (x :: List (List Int)) == flatten x
-flatMap ::
-  (a -> List b)
-  -> List a
-  -> List b
-flatMap =
-  error "todo: Course.List#flatMap"
+flatMap ::  (a -> List b) -> List a -> List b
+flatMap f = flatten . (map f) 
 
 -- | Flatten a list of lists to a list (again).
 -- HOWEVER, this time use the /flatMap/ function that you just wrote.
