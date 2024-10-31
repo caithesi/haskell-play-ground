@@ -152,13 +152,10 @@ filter f (x :. xs) = if f x then x :. (filter f xs) else filter f xs
 -- prop> \x -> (x ++ y) ++ z == x ++ (y ++ z)
 --
 -- prop> \x -> x ++ Nil == x
-(++) ::
-  List a
-  -> List a
-  -> List a
-(++) =
-  error "todo: Course.List#(++)"
-
+(++) :: List a -> List a -> List a
+(++) a Nil = a
+(++) Nil a = a
+(++) ls rs = foldRight (:.) rs ls
 infixr 5 ++
 
 -- | Flatten a list of lists to a list.
