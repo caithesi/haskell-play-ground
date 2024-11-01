@@ -232,12 +232,10 @@ seqOptionalRight _ _ = Empty
 --
 -- >>> find (const True) infinity
 -- Full 0
-find ::
-  (a -> Bool)
-  -> List a
-  -> Optional a
-find =
-  error "todo: Course.List#find"
+find :: (a -> Bool) -> List a -> Optional a
+-- find _ Nil = Empty 
+-- find f (x :. xs) = if f x then (Full x) else (find f xs)
+find f = headOr Empty . map Full . filter f
 
 -- | Determine if the length of the given list is greater than 4.
 --
