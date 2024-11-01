@@ -250,11 +250,9 @@ find f = headOr Empty . map Full . filter f
 --
 -- >>> lengthGT4 infinity
 -- True
-lengthGT4 ::
-  List a
-  -> Bool
-lengthGT4 =
-  error "todo: Course.List#lengthGT4"
+lengthGT4 :: List a -> Bool
+lengthGT4 Nil = False
+lengthGT4 xs = not . isEmpty $ drop 4 xs
 
 -- | Reverse a list.
 --
