@@ -265,11 +265,8 @@ lengthGT4 xs = not . isEmpty $ drop 4 xs
 -- prop> \x -> let types = x :: List Int in reverse x ++ reverse y == reverse (y ++ x)
 --
 -- prop> \x -> let types = x :: Int in reverse (x :. Nil) == x :. Nil
-reverse ::
-  List a
-  -> List a
-reverse =
-  error "todo: Course.List#reverse"
+reverse :: List a -> List a
+reverse = foldLeft (flip (:.)) Nil
 
 -- | Produce an infinite `List` that seeds with the given value at its head,
 -- then runs the given function for subsequent elements
@@ -279,12 +276,8 @@ reverse =
 --
 -- >>> let (x:.y:.z:.w:._) = produce (*2) 1 in [x,y,z,w]
 -- [1,2,4,8]
-produce ::
-  (a -> a)
-  -> a
-  -> List a
-produce f x =
-  error "todo: Course.List#produce"
+produce :: (a -> a) -> a -> List a
+produce f x = x :. produce f (f x)
 
 -- | Do anything other than reverse a list.
 -- Is it even possible?
