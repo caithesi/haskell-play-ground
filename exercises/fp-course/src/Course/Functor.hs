@@ -119,8 +119,7 @@ instance Functor ((->) t) where
   k (a -> b)
   -> a
   -> k b
-(??) ff a =
-  error "todo: Course.Functor#(??)"
+(??) ff a = (<$>) (\f -> f a) ff 
 
 infixl 1 ??
 
