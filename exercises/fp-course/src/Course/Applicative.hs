@@ -63,15 +63,17 @@ instance Applicative List where
   pure ::
     a
     -> List a
-  pure =
-    error "todo: Course.Applicative pure#instance List"
+  pure a = a :. Nil
   (<*>) ::
     List (a -> b)
     -> List a
     -> List b
-  (<*>) =
-    error "todo: Course.Apply (<*>)#instance List"
-
+  (<*>) Nil _ = Nil
+  (<*>)  _ Nil = Nil
+  (<*>) (f :. Nil) (a :. Nil) = f a :. Nil
+  (<*>) (f :. fs) as = h ++ tail
+              where h = map f as
+                    tail = (<*>) fs as 
 -- | Insert into an Optional.
 --
 -- prop> \x -> pure x == Full x
