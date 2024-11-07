@@ -119,7 +119,7 @@ instance Functor ((->) t) where
   k (a -> b)
   -> a
   -> k b
-(??) ff a = (<$>) (\f -> f a) ff 
+(??) ff a = (<$>) ($ a) ff 
 
 infixl 1 ??
 
